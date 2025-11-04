@@ -21,7 +21,61 @@
   <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css">
   <link rel="stylesheet" href="assets/css/plugins/animate.css">
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>
+
+
+
+    // ✅ Use your Sheet.best public API URL here
+    const SHEET_URL = "https://api.sheetbest.com/sheets/094be98e-b0f2-44c6-9774-72fc33706a08";
+
+    async function loadJobs() {
+      try {
+        const res = await fetch(SHEET_URL);
+        const jobs = await res.json();
+
+        const container = document.getElementById("job-list");
+        container.innerHTML = jobs.map(job => `
+     <div class="job-accordion active">
+  <div class="job-header">
+    <h2 class="job-title">${job.JobTitle}</h2>
+    <span class="job-location">📍 ${job.WorkLocation}</span>
+  </div>
+
+  <div class="job-body">
+    <p><strong>Requirements:</strong> ${job.Requirements}</p>
+    <p><strong>Roles & Responsibilities:</strong> ${job.JobDuties}</p>
+    <p><strong>To Apply:</strong> ${job.ToApply}</p>
+    <p>
+      <strong>Apply Link:</strong> 
+      <a href="${job.Link}" target="_blank"><strong>Click Here To Apply</strong></a>
+    </p>
+    <p>
+      <strong>Email:</strong>
+      <a href="mailto:${job.Email}?subject=Application for ${encodeURIComponent(job.JobTitle)}">
+        ${job.Email}
+      </a>
+    </p>
+    <p><strong>Salary:</strong> ${job.Salary}</p>
+  </div>
+</div>
+
+
+    `).join('');
+      } catch (err) {
+        console.error("Error loading careers:", err);
+      }
+    }
+
+    loadJobs();
+
+
+  </script>
+
+
 </head>
+
+
 
 <body>
   <div class="cs-preloader cs-center">
@@ -200,100 +254,52 @@
     </div>
   </div>
   <!-- End Header Section -->
-  <!-- Start Hero -->
-  <div class="cs-page_heading cs-style1 cs-center text-center cs-bg" data-src="assets/img/about_hero_bg.jpeg">
-    <div class="container">
-      <div class="cs-page_heading_in">
-        <h1 class="cs-page_title cs-font_50 cs-white_color app-sec-color">Career</h1>
-        <ol class="breadcrumb text-uppercase">
-          <li class="breadcrumb-item">
-            <a href="index.html">Home</a>
-          </li>
-          <li class="breadcrumb-item active">Career</li>
-        </ol>
+
+  <div class="cs-height_200 cs-height_lg_80"></div>
+
+  <!-- Start Section: SaaS Overview -->
+  <div class="container">
+    <div class="cs-section_heading cs-style1 text-center">
+      <div class="container">
+        <div class="cs-page_heading_in">
+          <h1 class="cs-page_title cs-font_50 cs-white_color app-sec-color">Career</h1>
+        </div>
       </div>
+      <h2 class="cs-section_title">Current Openings</h2>
+      <div class="cs-height_30 cs-height_lg_20"></div>
+      <p>
+        Our consultants are skilled and comprehensive, with varied credentials and experiences. InfynIQ is all about you
+        – your ambitions, your advancement, and your total compensation package. If you feel you fit in, send us your
+        resume, perhaps you’ll see yourself at EIS.</p>
     </div>
   </div>
-  <!-- End Hero -->
-  <div class="cs-height_200 cs-height_lg_80"></div>
+
+  <div class="cs-height_90 cs-height_lg_45"></div>
+
+  <!-- Start SaaS Capabilities -->
+
+
+
   <section>
     <div class="container">
-      <div class="row">
-        <div class="col-xl-5 col-lg-7">
-          <div class="cs-section_heading cs-style1">
-            <h3 class="cs-section_subtitle">About Our Agency</h3>
-            <h2 class="cs-section_title">Your trusted partner <br>for business </h2>
-            <div class="cs-height_30 cs-height_lg_20"></div>
-            <p class="cs-m0">Empowering Innovation. Simplifying Technology. Creating Smarter Businesses.</p>
-            <div class="cs-height_30 cs-height_lg_30"></div>
-            <div class="cs-separator cs-accent_bg"></div>
-            <div class="cs-height_25 cs-height_lg_40"></div>
-          </div>
-        </div>
-        <div class="col-lg-5 offset-xl-2">
-          <img src="assets/img/about_img_2.jpeg" alt="Thumb" class="w-100 cs-radius_15">
-          <div class="cs-height_25 cs-height_lg_25"></div>
-        </div>
-      </div>
+      <!-- JOB -->
+
+
+
+      <div id="job-list" class="row justify-content-center"></div>
+
+
+
+
+
     </div>
   </section>
+
+
   <div class="cs-height_75 cs-height_lg_55"></div>
-  <!-- Start FunFact -->
-  <section>
-    <div class="container">
-      <div class="cs-funfact_wrap">
-        <div class="cs-funfact_shape" data-src="assets/img/funfact_shape_bg.svg"></div>
-        <div class="cs-funfact_left">
-          <div class="cs-funfact_heading">
-            <h2>Our fun fact</h2>
-            <p>At InfynIQ, the “IQ” in our name stands for Innovation Quotient — a reminder that intelligence isn’t just
-              about technology, but about how creatively we use it to make businesses smarter every day.
-            </p>
-          </div>
-        </div>
-        <div class="cs-funfact_right">
-          <div class="cs-funfacts">
-            <div class="cs-funfact cs-style1">
-              <div class="cs-funfact_number cs-primary_font cs-semi_bold cs-primary_color">
-                <span data-count-to="40" class="odometer"></span>K
-              </div>
-              <div class="cs-funfact_text">
-                <span class="cs-accent_color">+</span>
-                <p>Global Happy Clients</p>
-              </div>
-            </div>
-            <div class="cs-funfact cs-style1">
-              <div class="cs-funfact_number cs-primary_font cs-semi_bold cs-primary_color">
-                <span data-count-to="50" class="odometer"></span>K
-              </div>
-              <div class="cs-funfact_text">
-                <span class="cs-accent_color">+</span>
-                <p>Project Completed</p>
-              </div>
-            </div>
-            <div class="cs-funfact cs-style1">
-              <div class="cs-funfact_number cs-primary_font cs-semi_bold cs-primary_color">
-                <span data-count-to="245" class="odometer"></span>
-              </div>
-              <div class="cs-funfact_text">
-                <span class="cs-accent_color">+</span>
-                <p>Team Members</p>
-              </div>
-            </div>
-            <div class="cs-funfact cs-style1">
-              <div class="cs-funfact_number cs-primary_font cs-semi_bold cs-primary_color">
-                <span data-count-to="550" class="odometer"></span>
-              </div>
-              <div class="cs-funfact_text">
-                <span class="cs-accent_color">+</span>
-                <p>Digital products</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
+
+
   <!-- End FunFact -->
   <div class="cs-height_150 cs-height_lg_80"></div>
   <div class="container">
@@ -301,67 +307,7 @@
       <div class="col-lg-12">
         <div class="cs-post cs-style2">
           <div class="cs-post_info">
-            <div class="row">
-              <div class="col-md-6">
-                <img src="assets/img/post_4.jpeg" alt="Blog Details" class="cs-radius_15 w-100">
-                <div class="cs-height_45 cs-height_lg_45"></div>
-              </div>
-              <div class="col-md-6">
-                <h3>Who We Are — Turning Ideas Into Intelligent Solutions</h3>
-                <p>InfynIQ IT Solutions is a UK-based technology and services consulting company committed to
-                  transforming how businesses operate and grow.
-                  Founded with a vision to bridge the gap between complex business challenges and intelligent
-                  technology, we specialise in SAP consulting, ERP systems, SaaS platforms, data analytics, and
-                  enterprise software development.
-                  Our diverse team blends strategy, creativity, and engineering precision — empowering clients to
-                  streamline operations, enhance productivity, and build digitally resilient futures.
-                </p>
-                <div class="cs-post_meta cs-style1 cs-ternary_color cs-semi_bold cs-primary_font">
-                  <span class="cs-posted_by">07 Mar 2022</span>
-                  <a href="#" class="cs-post_avatar">Tech</a>
-                </div>
-              </div>
-              <div class="cs-height_45 cs-height_lg_45"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h3>Our Mission — Inspiring Growth Through Smart Innovation</h3>
-                <p>Our mission is to help organisations embrace innovation with confidence and achieve measurable
-                  business outcomes.
-                  We design technology solutions that simplify complexity, accelerate transformation, and align
-                  perfectly with each client’s unique business requirements.
 
-                </p>
-                <div class="cs-post_meta cs-style1 cs-ternary_color cs-semi_bold cs-primary_font">
-                  <span class="cs-posted_by">07 Mar 2022</span>
-                  <a href="#" class="cs-post_avatar">Tech</a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <img src="assets/img/post_5.jpeg" alt="Blog Details" class="cs-radius_15 w-100">
-                <div class="cs-height_45 cs-height_lg_45"></div>
-              </div>
-              <div class="cs-height_45 cs-height_lg_45"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <img src="assets/img/post_4.jpeg" alt="Blog Details" class="cs-radius_15 w-100">
-                <div class="cs-height_45 cs-height_lg_45"></div>
-              </div>
-              <div class="col-md-6">
-                <h3>Our Vision — Building the Future of Digital Empowerment
-                </h3>
-                <p>We envision a world where technology becomes an asset — not an obstacle — to business excellence.
-                  Our goal is to be a global leader in intelligent enterprise solutions, recognised for innovation,
-                  trust, and the ability to shape meaningful digital experiences.
-                </p>
-                <div class="cs-post_meta cs-style1 cs-ternary_color cs-semi_bold cs-primary_font">
-                  <span class="cs-posted_by">07 Mar 2022</span>
-                  <a href="#" class="cs-post_avatar">Tech</a>
-                </div>
-              </div>
-              <div class="cs-height_45 cs-height_lg_45"></div>
-            </div>
             <div class="row">
               <div class="col-md-6">
                 <h3>Core Values — The Principles Behind Our Progress</h3>
@@ -404,6 +350,12 @@
       <div class="cs-height_30 cs-height_lg_30"></div>
     </div>
   </div>
+
+
+
+
+
+
 
   <!-- Start Footer -->
   <footer class="cs-fooer">
