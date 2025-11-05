@@ -904,3 +904,31 @@ particlesJS('particles-js', {
     },
     "retina_detect": true
   });
+
+
+
+
+  const form = document.getElementById('cs-form');
+  const result = document.getElementById('cs-result');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    result.innerHTML = "⏳ Sending...";
+    const formData = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      result.style.color = "green";
+      result.innerHTML = "✅ Message sent successfully!";
+      form.reset();
+    } else {
+      result.style.color = "red";
+      result.innerHTML = "❌ Error sending message. Please try again later.";
+    }
+  });
