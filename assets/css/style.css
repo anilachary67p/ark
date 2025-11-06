@@ -3032,8 +3032,8 @@ label {
 }
 
 .cs-gap-12 .slick-slide {
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .cs-gap-12 .slick-list {
   margin-left: -6px;
